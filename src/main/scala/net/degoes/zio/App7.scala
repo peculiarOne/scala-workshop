@@ -52,7 +52,7 @@ object App7 extends App with Helpers {
 
   }
 
-  override def run(args: List[String]): ZIO[Console, Nothing, Int] = {
+  override def run(args: List[String]): ZIO[Console with Blocking, Nothing, Int] = {
     if (args.isEmpty) {
       console.putStrLn("need to provide path to a file")
       UIO.succeed(1)
