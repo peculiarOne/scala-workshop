@@ -40,6 +40,14 @@ object App10 extends App with Helpers {
         .eventually
   }
 
+  /* simple implement of fork all */
+  def forkAll[R,E,A](list: List[ZIO[R,E,A]]): ZIO[R, Nothing, Unit] = {
+    list match {
+      case Nil => IO.unit
+      case x :: xs => x.fork *> forkAll(xs)
+    }
+  }
+
   override def run(args: List[String]): ZIO[ZEnv, Nothing, Int] =
     (for {
       _          <- putStrLn("How many fibers would you like to use for calculations?")
