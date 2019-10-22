@@ -5,3 +5,4 @@ project/.sbt
 .metals
 metals.lock.db
 project/.bloop/
+.idea/
